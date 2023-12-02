@@ -85,9 +85,7 @@ func getDigits(s string) []int {
 			continue
 		}
 
-		if unicode.IsDigit(r) {
-			lastDigit, _ = strconv.Atoi(string(r))
-		}
+		lastDigit, _ = strconv.Atoi(string(r))
 	}
 
 	if firstDigit == -1 {
