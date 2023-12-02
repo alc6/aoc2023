@@ -80,12 +80,13 @@ func getDigits(s string) []int {
 			r = rune('0' + digitFromStr)
 		}
 
-		if firstDigit == -1 {
-			firstDigit, _ = strconv.Atoi(string(r))
+		d, _ := strconv.Atoi(string(r))
+		if firstDigit == 1 {
+			firstDigit = d
 			continue
 		}
 
-		lastDigit, _ = strconv.Atoi(string(r))
+		lastDigit = d
 	}
 
 	if firstDigit == -1 {
