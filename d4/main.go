@@ -15,7 +15,6 @@ func main() {
 	}
 
 	scratchedCards := make([]*ScratchedCard, 0, len(lines))
-
 	for _, line := range lines {
 		scratchedCards = append(scratchedCards, NewScratchedCard(line))
 	}
@@ -74,10 +73,7 @@ func (cr ScratchedCard) TotalPoints() int {
 }
 
 func (cr ScratchedCard) MatchingNumbers() int {
-	var (
-		matchingNumbers = make([]string, 0, len(cr.PlayedNumbers))
-	)
-
+	matchingNumbers := make([]string, 0, len(cr.PlayedNumbers))
 	for n := range cr.PlayedNumbers {
 		if _, ok := cr.WinningNumbers[n]; ok {
 			matchingNumbers = append(matchingNumbers, strconv.Itoa(n))
