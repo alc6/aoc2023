@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/alc6/aoc2023/util"
 	"log"
+	"math"
 	"regexp"
 	"strconv"
 )
@@ -58,21 +59,18 @@ func NewScratchedCard(in string) *ScratchedCard {
 }
 
 func (cr ScratchedCard) TotalPoints() int {
-	var sum int
-	var nMatches int
+	var matches int
 	for n := range cr.PlayedNumbers {
 		if _, ok := cr.WinningNumbers[n]; ok {
-			nMatches++
-			if sum == 0 {
-				sum = 1
-				continue
-			}
-
-			sum *= 2
+			matches++
 		}
 	}
 
-	return sum
+	if matches == 0 {
+		return 0
+	}
+
+	return int(math.Pow(2, float64(matches-1)))
 }
 
 func (cr ScratchedCard) MatchingNumbers() int {
@@ -94,6 +92,7 @@ func pt1(scratchedCards []*ScratchedCard) {
 	for _, sc := range scratchedCards {
 		totalPoint += sc.TotalPoints()
 	}
+
 	log.Println("pt1 total points: ", totalPoint)
 }
 
